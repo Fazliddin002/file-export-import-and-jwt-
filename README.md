@@ -36,19 +36,6 @@ iTextPDF (for PDF support)
 
 Springdoc OpenAPI
 
-📦 Project Structure
-graphql
-Копировать
-Редактировать
-realproject/
-├── controller/                # REST API Controllers
-├── dto/                      # DTOs for data transfer
-├── entity/                   # Entity classes (JPA)
-├── repo/                     # Spring Data JPA Repositories
-├── security/                 # Security config, entities, and JWT logic
-├── service/                  # Business logic services
-└── ...                       # Application config and main class
-
 🔐 Authentication Endpoints
 POST /api/auth/login — Login with phone and password
 
