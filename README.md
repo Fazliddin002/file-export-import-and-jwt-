@@ -1,69 +1,56 @@
-This project is a Spring Boot based web application that provides APIs for managing files, video links, and program links, along with user authentication and profile image upload functionality.
+# E-Commerce System using Spring Boot
 
-🚀 Features
-✅ User Registration & Login with JWT Authentication
+This project is a simple **E-Commerce System** developed using **Spring Boot**, designed for managing products, categories, orders, and user baskets in an online store. The system includes an **admin panel** for managing products and categories, along with a **user interface** for browsing products and placing orders.
 
-🖼️ Upload and serve user profile images
+## Features
 
-📥 Upload, 📄 list, 📤 download, and 🗑️ delete files
+- **Admin Panel**: Manage categories, products, and orders.
+- **Product Management**: Add, edit, and delete products in the system.
+- **Category Management**: Add, edit, and delete product categories.
+- **User Basket**: Users can add products to their shopping cart.
+- **Order Management**: Users can place orders for products in their basket.
+- **File Handling**: Upload and display images for products.
+- **Authentication**: Login and logout functionalities with user session management.
 
-🔗 Manage video links (e.g. YouTube links)
+## Technologies Used
 
-🔗 Manage program or software links
+- **Backend**: Spring Boot, Spring Security, Spring Session
+- **Frontend**: Thymeleaf
+- **Database**: PostgreSQL
+- **File Handling**: MultipartFile for image uploads
+- **UUID** for unique identifiers
+- **Authentication**: JWT for secure login
+- **Session**: For managing user sessions
 
-🔐 Secured endpoints using Spring Security
+## Project Structure
 
-📄 API documentation using OpenAPI/Swagger UI
+The project consists of the following main components:
 
-🛠️ Tech Stack
-Java 17
+- **Controllers**:
+  - `AdminController`: Manages admin functionalities like product and category management.
+  - `AttachmentController`: Handles file uploads and image management.
+  - `BasketController`: Manages user shopping cart functionality.
+  - `CategoryController`: Manages product categories.
+  - `HomeController`: Handles the homepage and product listing.
+  - `LoginController`: Manages user login and authentication.
+  - `OrderController`: Manages user orders.
 
-Spring Boot 3.4.2
+- **Models**: Includes entities for products, categories, orders, and user information.
+- **Views**: Uses Thymeleaf templates to display the frontend pages.
 
-Spring Data JPA
+## Installation and Setup
 
-Spring Security
+Follow the steps below to set up the project locally:
 
-JWT (JSON Web Tokens)
+### Prerequisites
 
-PostgreSQL
+- Java 11 or higher
+- Maven (for building the project)
+- PostgreSQL (or any other supported database)
+- IDE (IntelliJ IDEA, Eclipse, etc.)
 
-Lombok
+### Steps to Run
 
-Thymeleaf
-
-iTextPDF (for PDF support)
-
-Springdoc OpenAPI
-
-🔐 Authentication Endpoints
-POST /api/auth/login — Login with phone and password
-
-POST /api/auth/register — Register with phone, password, and profile image
-
-📁 File Endpoints
-POST /api/files/upload — Upload a file
-
-GET /api/files — List all uploaded files
-
-GET /api/files/download/{fileName} — Download a file
-
-DELETE /api/files/delete/{fileName} — Delete a file
-
-🎥 Video Link Endpoints
-GET /api/video_link — Get all video links
-
-GET /api/video_link/{id} — Get a video link by ID
-
-POST /api/video_link — Create a new video link
-
-DELETE /api/video_link/{id} — Delete a video link
-
-💻 Program Link Endpoints
-GET /api/program_link — Get all program links
-
-GET /api/program_link/{id} — Get a program link by ID
-
-POST /api/program_link — Create a new program link
-
-DELETE /api/program_link/{id} — Delete a program link
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/e-commerce-system.git
