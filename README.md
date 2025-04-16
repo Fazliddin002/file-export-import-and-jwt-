@@ -1,56 +1,79 @@
-# E-Commerce System using Spring Boot
+# 📁 File and Resource Management System
 
-This project is a simple **E-Commerce System** developed using **Spring Boot**, designed for managing products, categories, orders, and user baskets in an online store. The system includes an **admin panel** for managing products and categories, along with a **user interface** for browsing products and placing orders.
+This project is a Spring Boot based web application that provides APIs for managing files, video links, and program links, along with user authentication and profile image upload functionality.
 
-## Features
+## 🚀 Features
 
-- **Admin Panel**: Manage categories, products, and orders.
-- **Product Management**: Add, edit, and delete products in the system.
-- **Category Management**: Add, edit, and delete product categories.
-- **User Basket**: Users can add products to their shopping cart.
-- **Order Management**: Users can place orders for products in their basket.
-- **File Handling**: Upload and display images for products.
-- **Authentication**: Login and logout functionalities with user session management.
+- ✅ **User Registration & Login** with JWT Authentication
+- 🖼️ **Upload and serve user profile images**
+- 📥 **Upload, 📄 list, 📤 download**, and 🗑️ **delete files**
+- 🔗 **Manage video links** (e.g. YouTube links)
+- 🔗 **Manage program or software links**
+- 🔐 **Secured endpoints** using Spring Security
+- 📄 **API documentation** using OpenAPI/Swagger UI
 
-## Technologies Used
+## 🛠 Tech Stack
 
-- **Backend**: Spring Boot, Spring Security, Spring Session
-- **Frontend**: Thymeleaf
-- **Database**: PostgreSQL
-- **File Handling**: MultipartFile for image uploads
-- **UUID** for unique identifiers
-- **Authentication**: JWT for secure login
-- **Session**: For managing user sessions
+- Java 17
+- Spring Boot 3.4.2
+- Spring Security
+- Spring Data JPA
+- PostgreSQL
+- Thymeleaf
+- JWT (JSON Web Tokens)
+- iTextPDF (for PDF support)
+- Lombok
+- Springdoc OpenAPI (Swagger UI)
+- Maven
 
-## Project Structure
+---
 
-The project consists of the following main components:
+## 🔐 Auth API
 
-- **Controllers**:
-  - `AdminController`: Manages admin functionalities like product and category management.
-  - `AttachmentController`: Handles file uploads and image management.
-  - `BasketController`: Manages user shopping cart functionality.
-  - `CategoryController`: Manages product categories.
-  - `HomeController`: Handles the homepage and product listing.
-  - `LoginController`: Manages user login and authentication.
-  - `OrderController`: Manages user orders.
+- `POST /api/auth/register` – Register a user with phone, password, and profile image
+- `POST /api/auth/login` – Login with phone and password, returns JWT token
 
-- **Models**: Includes entities for products, categories, orders, and user information.
-- **Views**: Uses Thymeleaf templates to display the frontend pages.
+---
 
-## Installation and Setup
+## 👤 User Profile Image
 
-Follow the steps below to set up the project locally:
+- `POST /file/user/{id}` – Get the user's profile image (read from `User` object)
 
-### Prerequisites
+---
 
-- Java 11 or higher
-- Maven (for building the project)
-- PostgreSQL (or any other supported database)
-- IDE (IntelliJ IDEA, Eclipse, etc.)
+## 📁 File Management (`FileController`)
 
-### Steps to Run
+- `POST /api/files/upload` – Upload a file
+- `GET /api/files` – List all uploaded files
+- `GET /api/files/download/{filename}` – Download a file
+- `DELETE /api/files/delete/{filename}` – Delete a file
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/e-commerce-system.git
+---
+
+## 🔗 Program Link Management (`ProgramLinkController`)
+
+- `GET /api/program_link` – List all program links
+- `GET /api/program_link/{id}` – Get a program link by ID
+- `POST /api/program_link` – Create a new program link
+- `DELETE /api/program_link/{id}` – Delete a program link
+
+---
+
+## 🎥 Video Link Management (`VideoLinkController`)
+
+- `GET /api/video_link` – List all video links
+- `GET /api/video_link/{id}` – Get a video link by ID
+- `POST /api/video_link` – Create a new video link
+- `DELETE /api/video_link/{id}` – Delete a video link
+
+---
+
+## 🧪 Testing
+
+The following libraries are available for testing:
+
+- Spring Boot Starter Test
+- Spring Security Test
+
+```bash
+./mvnw test
