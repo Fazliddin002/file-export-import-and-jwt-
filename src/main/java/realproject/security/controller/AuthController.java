@@ -74,19 +74,19 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Parol kamida 8 ta belgidan iborat bo‘lishi kerak!");
         }
 
-        if (userForm.getImage() == null || userForm.getImage().isEmpty()) {
-            return ResponseEntity.badRequest().body("Profil rasmi yuklanishi shart!");
-        }
+//        if (userForm.getImage() == null || userForm.getImage().isEmpty()) {
+//            return ResponseEntity.badRequest().body("Profil rasmi yuklanishi shart!");
+//        }
 
-            Attachment attachment = Attachment.builder().image(userForm.getImage().getBytes()).build();
-            attachmentRepository.save(attachment);
+//            Attachment attachment = Attachment.builder().image(userForm.getImage().getBytes()).build();
+//            attachmentRepository.save(attachment);
 
         Role role = roleRepository.findAllByRoleName(RoleName.ROLE_USER);
         User user = User.builder()
                 .firstName(userForm.getUserDto().getFirstName())
                 .phone(userForm.getUserDto().getPhone())
                 .password(passwordEncoder.encode(userForm.getUserDto().getPassword()))
-                .attachment(attachment)
+//                .attachment(attachment)
                 .roles(List.of(role))
                 .build();
         User saved = userRepository.save(user);
