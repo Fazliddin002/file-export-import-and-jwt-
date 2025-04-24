@@ -17,13 +17,6 @@ import java.util.stream.Collectors;
 public class FileService {
 
     private final Path storagePath = Paths.get(System.getProperty("user.dir"), "uploaded_files");
-//    if (!Files.exists(storagePath)) {
-//        try {
-//            Files.createDirectories(storagePath);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void saveFile(MultipartFile file) {
         try {

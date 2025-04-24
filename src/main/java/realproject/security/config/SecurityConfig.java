@@ -29,33 +29,33 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> auth
-//                .requestMatchers(
-//                        "/api/auth/**",
-//                        "/api/token/refresh",
-//                        "/css/**", "/js/**", "/images/**",
-//                        "/login.html",
-//                        "/favicon.ico"
-//                ).permitAll()
-//
-//                // 🟢 Barcha foydalanuvchilar ko‘rishi mumkin bo‘lgan endpointlar
-//                .requestMatchers(HttpMethod.GET,
-//                        "/api/program_link",
-//                        "/api/video_link",
-//                        "/api/files",
-//                        "/api/files/download/**"
-//                ).permitAll()
-//
-//                // 🔴 Faqat ADMIN huquqli foydalanuvchilar bajara oladigan endpointlar
-//                .requestMatchers(
-//                        "/api/program_link",        // POST (link qo‘shish)
-//                        "/api/video_link",          // POST (link qo‘shish)
-//                        "/api/program_link/**",     // DELETE
-//                        "/api/video_link/**",       // DELETE
-//                        "/api/files/upload",        // fayl yuklash
-//                        "/api/files/delete/**"      // fayl o‘chirish
-//                ).hasRole("ADMIN")
+                .requestMatchers(
+                        "/api/auth/**",
+                        "/api/token/refresh",
+                        "/css/**", "/js/**", "/images/**",
+                        "/login.html",
+                        "/favicon.ico"
+                ).permitAll()
 
-                // 🔒 Qolgan barcha requestlar login talab qiladi
+                // 🟢 Barcha foydalanuvchilar ko‘rishi mumkin bo‘lgan endpointlar
+                .requestMatchers(HttpMethod.GET,
+                        "/api/program_link",
+                        "/api/video_link",
+                        "/api/files",
+                        "/api/files/download/**"
+                ).permitAll()
+
+                // 🔴 Faqat ADMIN huquqli foydalanuvchilar bajara oladigan endpointlar
+                .requestMatchers(
+                        "/api/program_link",        // POST (link qo‘shish)
+                        "/api/video_link",          // POST (link qo‘shish)
+                        "/api/program_link/**",     // DELETE
+                        "/api/video_link/**",       // DELETE
+                        "/api/files/upload",        // fayl yuklash
+                        "/api/files/delete/**"      // fayl o‘chirish
+                ).hasRole("ADMIN")
+
+//                 🔒 Qolgan barcha requestlar login talab qiladi
                 .anyRequest().permitAll()
 
         );
