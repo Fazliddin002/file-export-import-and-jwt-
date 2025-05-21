@@ -30,8 +30,8 @@ public class User implements UserDetails {
 
     private String lastName;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Attachment attachment;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Attachment attachment;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;

@@ -47,12 +47,12 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginRequestDto.getPhone(), loginRequestDto.getPassword())
         );
         String accessToken = jwtUtils.generateToken((UserDetails) authenticate.getPrincipal());
-        String refreshToken = jwtUtils.generateRefreshToken((UserDetails) authenticate.getPrincipal());
-        return new TokenDto(accessToken, refreshToken);
+//        String refreshToken = jwtUtils.generateRefreshToken((UserDetails) authenticate.getPrincipal());
+        return new TokenDto(accessToken);
     }
 
 
-    @PostMapping( "/register")
+    @PostMapping("/register")
     public HttpEntity<?> register(
             @Valid @ModelAttribute UserForm userForm) throws IOException {
         String phone = userForm.getUserDto().getPhone().trim();
@@ -74,12 +74,12 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Parol kamida 8 ta belgidan iborat bo‘lishi kerak!");
         }
 
-//        if (userForm.getImage() == null || userForm.getImage().isEmpty()) {
-//            return ResponseEntity.badRequest().body("Profil rasmi yuklanishi shart!");
-//        }
+        if (userForm.getImage() == null || userForm.getImage().isEmpty()) {
+            return ResponseEntity.badRequest().body("Profil rasmi yuklanishi shart!");
+        }
 
-//            Attachment attachment = Attachment.builder().image(userForm.getImage().getBytes()).build();
-//            attachmentRepository.save(attachment);
+        Attachment attachment = Attachment.builder().image(userForm.getImage().getBytes()).build();
+        attachmentRepository.save(attachment);
 
         Role role = roleRepository.findAllByRoleName(RoleName.ROLE_USER);
         User user = User.builder()
@@ -93,17 +93,10 @@ public class AuthController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Foydalanuvchi muvaffaqiyatli ro‘yxatdan o‘tdi!");
     }
+
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletRequest request) {
-        // Agar JWT tokenni ishlatgan bo'lsangiz, tokenni invalidate qilish kerak
-        // Bu yerda HttpSession yordamida foydalanuvchini log out qilamiz
-
-        // Sessionni invalid qilish
+    public HttpEntity<?> logout(HttpServletRequest request) {
         request.getSession().invalidate();
-
-        // Agar JWT token ishlatilayotgan bo'lsa, tokenni serverda invalid qilishni ta'minlash kerak
-        // Bu uchun JWT tokenning expiry vaqtini yoki blacklisting qilish imkoniyatlari bo'lishi mumkin
-
         return ResponseEntity.ok("Foydalanuvchi muvaffaqiyatli tizimdan chiqdi!");
     }
 

@@ -11,8 +11,9 @@ import realproject.security.repo.UserRepository;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByPhone(username).orElseThrow(()->new UsernameNotFoundException("User not found"));
+    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+        return userRepository.findByPhone(phone).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

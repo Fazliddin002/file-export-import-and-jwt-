@@ -27,7 +27,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, Filter filter) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
-
+        http.cors(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                         "/api/auth/**",
@@ -37,7 +37,6 @@ public class SecurityConfig {
                         "/favicon.ico"
                 ).permitAll()
 
-                // 🟢 Barcha foydalanuvchilar ko‘rishi mumkin bo‘lgan endpointlar
                 .requestMatchers(HttpMethod.GET,
                         "/api/program_link",
                         "/api/video_link",
@@ -45,18 +44,16 @@ public class SecurityConfig {
                         "/api/files/download/**"
                 ).permitAll()
 
-                // 🔴 Faqat ADMIN huquqli foydalanuvchilar bajara oladigan endpointlar
                 .requestMatchers(
-                        "/api/program_link",        // POST (link qo‘shish)
-                        "/api/video_link",          // POST (link qo‘shish)
-                        "/api/program_link/**",     // DELETE
-                        "/api/video_link/**",       // DELETE
-                        "/api/files/upload",        // fayl yuklash
-                        "/api/files/delete/**"      // fayl o‘chirish
+                        "/api/program_link",
+                        "/api/video_link",
+                        "/api/program_link/**",
+                        "/api/video_link/**",
+                        "/api/files/upload",
+                        "/api/files/delete/**"
                 ).hasRole("ADMIN")
 
-//                 🔒 Qolgan barcha requestlar login talab qiladi
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
 
         );
 

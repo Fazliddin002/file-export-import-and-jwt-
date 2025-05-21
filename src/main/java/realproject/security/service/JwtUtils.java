@@ -1,4 +1,5 @@
 package realproject.security.service;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -23,7 +24,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000  * 60 * 60 * 24 ))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .claim("roles", roles)
                 .signWith(getSecretKey()).compact();
     }
@@ -37,8 +38,6 @@ public class JwtUtils {
                 .claim("roles", roles)
                 .signWith(getSecretKey()).compact();
     }
-
-
 
 
     public boolean isValid(String token) {
